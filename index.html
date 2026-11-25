@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Record Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">CSD0111 · PROJECT STUDIO-I</p>
+      <h1>Student Record Management System</h1>
+      <p class="subtitle">Manage student details and academic performance in one place.</p>
+    </div>
+    <button id="exportBtn" class="button button-light">Export CSV</button>
+  </header>
+
+  <main class="container">
+    <section class="stats" aria-label="Dashboard">
+      <article class="stat-card"><span>Total Students</span><strong id="totalStudents">0</strong></article>
+      <article class="stat-card"><span>Class Average</span><strong id="classAverage">0%</strong></article>
+      <article class="stat-card"><span>Top Performer</span><strong id="topPerformer">—</strong></article>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading">
+        <div><p class="eyebrow">STUDENT DETAILS</p><h2 id="formHeading">Add New Student</h2></div>
+        <span class="hint">Fields marked * are required</span>
+      </div>
+      <form id="studentForm">
+        <input type="hidden" id="editingId">
+        <div class="form-grid">
+          <label>Student ID *<input id="studentId" required maxlength="20" placeholder="e.g. STU001"></label>
+          <label>Student Name *<input id="studentName" required maxlength="60" placeholder="Enter full name"></label>
+          <label>Course *<input id="course" required placeholder="e.g. B.Tech CSE"></label>
+          <label>Semester *<select id="semester" required>
+            <option value="">Select semester</option>
+            <option>1</option><option>2</option><option>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7</option><option>8</option>
+          </select></label>
+          <label>Section *<input id="section" required maxlength="5" placeholder="e.g. C"></label>
+          <label>Subject 1 Marks *<input id="mark1" type="number" min="0" max="100" required placeholder="0–100"></label>
+          <label>Subject 2 Marks *<input id="mark2" type="number" min="0" max="100" required placeholder="0–100"></label>
+          <label>Subject 3 Marks *<input id="mark3" type="number" min="0" max="100" required placeholder="0–100"></label>
+        </div>
+        <div class="form-actions">
+          <button class="button" type="submit" id="saveBtn">Add Student</button>
+          <button class="button button-secondary" type="button" id="cancelBtn" hidden>Cancel Edit</button>
+          <span id="formMessage" role="status" aria-live="polite"></span>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading records-heading">
+        <div><p class="eyebrow">RECORDS</p><h2>Student Records</h2></div>
+        <input id="searchInput" class="search" type="search" placeholder="Search by ID or name..." aria-label="Search students">
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th>Student ID</th><th>Name</th><th>Course</th><th>Sem.</th><th>Section</th>
+            <th>Marks</th><th>Average</th><th>Grade</th><th>Actions</th>
+          </tr></thead>
+          <tbody id="recordsBody"></tbody>
+        </table>
+        <p id="emptyState" class="empty">No student records yet. Add a student using the form above.</p>
+      </div>
+    </section>
+    <p class="footer-note">Demo project · Records are saved in this browser using LocalStorage.</p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
